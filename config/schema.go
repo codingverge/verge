@@ -1,10 +1,11 @@
-package resolver
+package config
 
 import (
 	"bytes"
 	"fmt"
+	"github.com/codingverge/verge"
+	"github.com/codingverge/verge/logrus"
 
-	"github.com/ory/x/logrusx"
 	"github.com/ory/x/otelx"
 
 	"github.com/gofrs/uuid"
@@ -31,7 +32,10 @@ func newCompiler(schema []byte) (string, *jsonschema.Compiler, error) {
 	if err := otelx.AddConfigSchema(compiler); err != nil {
 		return "", nil, err
 	}
-	if err := logrusx.AddConfigSchema(compiler); err != nil {
+	if err := logrus.AddConfigSchema(compiler); err != nil {
+		return "", nil, err
+	}
+	if err := verge.AddConfigSchema(compiler); err != nil {
 		return "", nil, err
 	}
 

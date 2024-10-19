@@ -1,4 +1,4 @@
-package resolver
+package config
 
 const (
 	LoadSpanOpName     = "config-load"
